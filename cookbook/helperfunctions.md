@@ -18,9 +18,36 @@ Contao bringt Funktionen mit, die es dem Entwicker ermöglichen schneller und ef
 ### specialchars
 
 ### standardize
+Standartisiert einen String. Dabei werden Leerzeichen durch Minuszeichen 
+ersetzt.
+```{.php}
+echo standardize('Contao Open Source Content Management System');
+// Ausgabe
+contao-open-source-content-management-system
+```
 
-### deserialize
+### deserialize($varValue, $blnForceArray=false)
+Gibt ein unserialisiertes Array zurück.
+```{.php}
+$array = deserialize('a:1:{s:3:"foo";s:3:"bar";}');
+ 
+// Ausgabe
+Array
+(
+   [foo] => bar
+)
+```
 
+Oder das Argument.
+```{.php}
+$array = deserialize(a:0:{}, true);
+ 
+// Ausgabe, wenn das Array nicht leer ist
+if (!empty($array))
+{
+    return;
+}
+```
 ### strip_insert_tags($strString)
 Diese Funktion macht nicht das was der Name vermuten lässt, sondern 
 ersetzt nicht die Inserttags von Contao, sondern entfernt sie.
@@ -60,6 +87,7 @@ contao/main.php?do=article&act=edit&id=1
 ```
  
 ## Sonstiges 
+
 ### scan($strFolder, $blnUncached=false)
 Durchsucht den angegebenen Ordner nach Dateien und Unterordnern und gibt
 die gefundenen Ergebnisse als Array zurück.
@@ -75,9 +103,6 @@ Array
     [2] => tinymce.css
 )
 ```
-
-### dump
-
 
 ### log_message($strMessage, $strLog='error.log')
 Mit dieser Funktion kann eine Nachricht in ein Logfile geschrieben werden. 
@@ -109,4 +134,3 @@ if($blnError)
   );
 }
 ```
-
